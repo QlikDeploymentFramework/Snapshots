@@ -5,7 +5,7 @@ The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that ut
 Copy the Snapshots file into an empty folder the snapshots will be generated in the Snaps subfolder. Execute Snapshots an almost empty window will appear, this means that there are no available snapshots as you have not created any yet. Press enter and your database/App state will be copied into a backup folder including latest date and time (2018-02-07_07-27_backup), this process is usually really quick (depending on app size), no services will be stopped during the backup process. There is also a logs created containing info and error.
 
   - Right click on Snapshots Tool and Run as Administrator. Please validate the settings identified by Snapshots as seen in the picture below. If running Shared Persistence the App folder should be the same as application share. Root certificate is also automatically identified and presented (in this example CN=CN1-CA).
-![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/1.png)
+  ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/1.png)
 - Press Enter to create a new snapshot.
 ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
 - After the tool has run once Snapshots will present earlier snapshots
