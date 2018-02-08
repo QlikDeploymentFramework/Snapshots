@@ -36,15 +36,15 @@ During recovery all Qlik Sense services except postgres need to be shutdown, in 
  > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
  ## Switches
 ### Silent snapshots
-- You can also create snapshots silently (no command line interaction) by using the silent switch. Using this it's easy to schedule the snapshots using for example Windows scheduler. This switch does not work together with password protection on the PostGreSQL database, please uncomment SET PGPASSWORD=<PassWord> and add the pwd. You can also add a %APPDATA%\postgresql\pgpass.conf file storing pwd read more under settings section. Postgres access will be validated, if access is denied Snapshots will terminate.
-![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/6.png)
+- You can also create snapshots silently (no command line interaction) by using the silent switch. Using this it's easy to schedule the snapshots using for example Windows scheduler. This switch does not work together with password protection on the PostGreSQL database, > please uncomment SET PGPASSWORD=<PassWord> and add the pwd. You can also add a %APPDATA%\postgresql\pgpass.conf file storing pwd read more under settings section. Postgres access will be validated, if access is denied Snapshots will terminate.
+> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/6.png)
 ### Silent snapshot with fixed name
 - The silent switch can also be extended with a fixed backup_name (instead of default date/time/server), in this way it becomes easier to create a recovery script (as the snapshot name is known).
- ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/7.png)
+> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/7.png)
 
 ### Silent restore
 - The switch restore backup_name can be use for active/passive clusters where you want to transfer a snap from the active site and recover on the passive site in time intervals. For this to work we need to use above silent snapshot with fixed name during the backup as well.
-  ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
+> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
 
 ## Settings
 Below is the available Snapshots settings, usually the defaults will work as Snaps identifies certificates and content folders automatically.
@@ -99,7 +99,7 @@ hostname:port:database:username:password
 Example: localhost:4432:QSR:postgres:Qlik1234
 ```
 ### PostgreSQL Home
-The Postgre program folder, usually %ProgramFiles%\Qlik\Sense\Repository\PostgreSQL 
+The Postgre program folder, usually *%ProgramFiles%\Qlik\Sense\Repository\PostgreSQL* 
 ```sh
 set PostgreHome
 ``` 
@@ -107,4 +107,15 @@ Snapshots will automatically identify the PostgreSQL version, this can manually 
 ```sh
 set PostGreVersion=9.6
 ``` 
-
+## Log
+Log files is created for every backup and recovery, stored under Log folder created by snapshots:
+>  ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
+#### There are two kinds of log files:
+- **Error log** contains errors breaking backup or recovery, like a database lock that can't be removed or the database can't be accessed as seen below.
+```sh
+2017-05-30_04-01 Could not access PostgreSQL DB:QSR Server:localhost Port:4432 Account:postgres
+```
+-  **Info log** contains progress information, as seen below.
+```sh 2017-05-30_05-57 Backup content from: "\\CENTRALNODE\QlikShare\Apps" "\\CENTRALNODE\QlikShare\StaticContent" "\\CENTRALNODE\QlikShare\CustomData" 
+2017-05-30_05-57 Copy database to "C:\Snapshots Tool\Snaps\2017-05-30_05-56_CENTRALNODE\QSR_backup.tar"
+```
