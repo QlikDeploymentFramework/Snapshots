@@ -15,6 +15,13 @@ Copy the Snapshots file into an empty folder the snapshots will be generated in 
   - Right click on Snapshots Tool and Run as Administrator.
   - Add PostgreSQL password
   - Validate settings identified by Snapshots (seen in the picture below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA).
+```sh  
+ ---- Snapshots 2.2 identified config:  -------
+PostGreSQL Name: localhost
+App folder: \\CentralNode\QlikShare
+RootCert Subject Name: CN=CN1-CA
+```
+
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/1.png)
 - Press Enter to create a new snapshot.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
