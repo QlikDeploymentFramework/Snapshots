@@ -23,10 +23,26 @@ App folder: \\CentralNode\QlikShare
 RootCert Subject Name: CN=CN1-CA
 ```
  5. Press Enter to create a new snapshot.
+ ```sh
+ ______________________________________
+Type name or tab snapshot to recover db
+To create a Sense backup just hit enter
+
+______________________________________
+|
+ ```
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
- 6. After the tool has run once Snapshots will present earlier snapshots.
+ 6. As soon as Snapshots tool has run earlier snapshots are presented.
+  ```sh
+ ______________________________________
+Type name or tab snapshot to recover db
+To create a Sense backup just hit enter
+2018-02-07_07-27_backup
+_____________________________________
+|
+ ```
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/3.png)
- 7. Add/remove/change applications or QMC settings, take more snaps and so on... 
+ 7. You can now add/remove/change Qlik Sense applications settings, take more snaps and so on... 
 ### Recover using snaps
 During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. 
 > In a multi node environment services on aditional nodes need to be shutdown manually
