@@ -21,7 +21,7 @@ SET PostGrePort=4432
 SET PostGreDB=QSR
 
 ::--- PGPASSWORD add password, also consider creating a %APPDATA%\postgresql\pgpass.conf file
-SET PGPASSWORD=Qlik1234
+::SET PGPASSWORD=<password>
 
 ::--- Exported Certificate Password
 SET CertExportPWD=QlikSense
