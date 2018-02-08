@@ -12,31 +12,31 @@ The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that ut
 ### Getting started
 Your current QLik Sense database and Apps state are copied into a backup folder (snapshots) including latest date and time (2018-02-07_07-27_backup), this process is usually really quick (depending on app size), no services will be stopped during the backup process. There is also a logs created containing info and error.
  
-  1.Copy the *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
-  2.Right click on Snapshots Tool and Run as Administrator.
-  3.Add PostgreSQL password
-  4.Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
+  1. Copy the *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
+  2. Right click on Snapshots Tool and Run as Administrator.
+  3. Add PostgreSQL password
+  4. Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
 ```sh  
  ---- Snapshots 2.2 identified config:  -------
 PostGreSQL Name: localhost
 App folder: \\CentralNode\QlikShare
 RootCert Subject Name: CN=CN1-CA
 ```
- 5.Press Enter to create a new snapshot.
+ 5. Press Enter to create a new snapshot.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
- 6.After the tool has run once Snapshots will present earlier snapshots.
+ 6. After the tool has run once Snapshots will present earlier snapshots.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/3.png)
- 7.Add/remove/change applications or QMC settings, take more snaps and so on... 
+ 7. Add/remove/change applications or QMC settings, take more snaps and so on... 
 ### Recover using snaps
 During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. 
 > In a multi node environment services on aditional nodes need to be shutdown manually
- 1.To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
+ 1. To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/4.png)
- 2.Recovery to the same system will work without any more questions asked.
- 3.If recovering on another environment (copying the snap between environments) an aditional question will show. 
+ 2. Recovery to the same system will work without any more questions asked.
+ 3. If recovering on another environment (copying the snap between environments) an aditional question will show. 
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
- 4.Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
- 5.If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
+ 4. Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
+ 5. If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
 
 ## Switches
 ### Silent snapshots
