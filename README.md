@@ -24,21 +24,22 @@ RootCert Subject Name: CN=CN1-CA
 ```
  5. Press Enter to create a new snapshot.
  ```sh
- ______________________________________
+ -------  Available Snapshots:  --------
+ 
 Type name or tab snapshot to recover db
 To create a Sense backup just hit enter
-
-______________________________________
+_______________________________________
 |
  ```
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
  6. As soon as Snapshots tool has run earlier snapshots are presented.
   ```sh
- ______________________________________
+-------  Available Snapshots:  --------
+2018-02-07_07-27_backup
+
 Type name or tab snapshot to recover db
 To create a Sense backup just hit enter
-2018-02-07_07-27_backup
-_____________________________________
+______________________________________
 |
  ```
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/3.png)
