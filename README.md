@@ -22,3 +22,16 @@ During recovery all Qlik Sense services except postgres need to be shutdown, in 
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
 - Here you can select to recover using the environmental settings (Y), this is the default and usually what you want to do. Meaning that the database will be updated with the settings from the current environment/server. Pressing (N) will use the settings stored within the snapshot, that have been identified as different to the current environment.
 - If Snapshots cannot find target application folder the recovery will cancel. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything damaged.
+
+## Switches
+### Silent snapshots
+- You can also create snapshots silently (no command line interaction) by using the silent switch. Using this it's easy to schedule the snapshots using for example Windows scheduler. This switch does not work together with password protection on the PostGreSQL database, please uncomment SET PGPASSWORD=<PassWord> and add the pwd. You can also add a %APPDATA%\postgresql\pgpass.conf file storing pwd read more under settings section. Postgres access will be validated, if access is denied Snapshots will terminate.
+> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/6.png)
+### Silent snapshot with fixed name
+- The silent switch can also be extended with a fixed backup_name (instead of default date/time/server), in this way it becomes easier to create a recovery script (as the snapshot name is known).
+> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/7.png)
+
+### Silent restore
+- The switch restore backup_name can be use for active/passive clusters where you want to transfer a snap from the active site and recover on the passive site in time intervals. For this to work we need to use above silent snapshot with fixed name during the backup as well.
+ > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
+
