@@ -37,20 +37,17 @@ During recovery all Qlik Sense services except postgres need to be shutdown, in 
 snapshots.cmd silent
 ```
 - This switch does not work together with password protection on the PostGreSQL database, please uncomment *set PGPASSWORD=<PassWord>* and add the pwd. You can also add a *%APPDATA%\postgresql\pgpass.conf* file storing pwd read more under settings section. Postgres access will be validated, if access is denied Snapshots will terminate, read more under settings section.
-> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/6.png)
+
 ### Silent snapshot with fixed name
-- The silent switch can also be extended with a fixed **backup_name** (instead of default date/time/server), in this way it becomes easier to create a recovery script (as the snapshot name is known).
-  ```sh
+- The **silent** switch can also be extended with a fixed **backup_name** (instead of default date/time/server), in this way it becomes easier to create a recovery script (as the snapshot name is known).
+```sh
 snapshots.cmd silent backup_name
 ```
-> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/7.png)
-
 ### Silent restore
 - The switch **restore backup_name** can be use for active/passive clusters where you want to transfer a snap from the active site and recover on the passive site in time intervals. For this to work we need to use above silent snapshot with fixed name during the backup as well.
-  ```sh
+```sh
 snapshots.cmd restore backup_name
 ```
- > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
 ## Settings
 Below is the available Snapshots settings, usually the defaults will work as Snaps identifies certificates and content folders automatically.
 ```sh
