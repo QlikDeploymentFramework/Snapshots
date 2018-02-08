@@ -20,7 +20,8 @@ Copy the Snapshots file into an empty folder the snapshots will be generated in 
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/3.png)
 - Add/remove/change applications or QMC settings, take more snaps and so on... 
 ### Recover using snaps
-During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. In a multi node environment services on aditional nodes need to be shutdown manually
+During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. 
+> In a multi node environment services on aditional nodes need to be shutdown manually
 - To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/4.png)
 - Recovery to the same system will work without any more questions asked.
