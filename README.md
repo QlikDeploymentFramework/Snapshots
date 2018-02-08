@@ -97,6 +97,7 @@ set PGPASSWORD=<PassWord>
 Postgres access will be validated, if access is denied Snapshots will terminate writing an error log.
 You can also add the file *%APPDATA%\postgresql\pgpass.conf* to store credentials for the account running the script, read more here. Postgres access will be validated, if access is denied Snapshots will terminate writing an error log. pgpass.conf file must have format: 
 ```sh
+%APPDATA%\postgresql\pgpass.conf 
 hostname:port:database:username:password
 Example: localhost:4432:QSR:postgres:Qlik1234
 ```
