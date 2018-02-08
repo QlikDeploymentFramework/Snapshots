@@ -17,7 +17,7 @@ Your current QLik Sense database and Apps state are copied into a backup folder 
   3. Add PostgreSQL password
   4. Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
 ```sh  
- ---- Snapshots 2.2 identified config:  -------
+----- Snapshots 2.2 identified config:  ------
 PostGreSQL Name: localhost
 App folder: \\CentralNode\QlikShare
 RootCert Subject Name: CN=CN1-CA
