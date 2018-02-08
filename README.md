@@ -14,7 +14,7 @@ Your current QLik Sense database and Apps state are copied into a backup folder 
  
   1. Copy the *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
   2. Right click on Snapshots Tool and Run as Administrator.
-  3. Add PostgreSQL password
+  3. Add PostgreSQL password, default account is postgres
   4. Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
 ```sh  
 ----- Snapshots 2.2 identified config:  ------
@@ -120,6 +120,11 @@ There are several PostgreSQL settings most usually do not need to be changed, be
 Change *PostgreLocation* if the database is located on remote system.
 ```sh
 set PostgreLocation=localhost 
+```
+### PostgreSQL account name
+Change the setting below to change default accont name 
+```sh
+set PostgreAccount=postgres
 ```
 ### PostgreSQL password
 If no password set Snapshots will ask for Postgre password during startup, for silent backup and recovery you need to set a fixed password.
