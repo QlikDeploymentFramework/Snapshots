@@ -5,14 +5,14 @@ The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that ut
 
 ### Prerequisites
 - Snapshots need Powershell 4.0 or later to be installed on the server.
-- Snapshots need to run on the CentralNode to backup the certificates
-- Snapshots need to run on the Qlik Sense service account to backup client certificates (but there are other certificate backups that can be used instead)
+- Snapshots need to run on the CentralNode to backup certificates from *Windows certificate store*
+- Snapshots should run on the Qlik Sense service account to backup client certificates (not critical, there are other certificate backups that can be used instead)
 - In an active/passive configuration, moving snapshots between the environments. Both environments must to use the same certificates.
 
 ### Getting started
 Your current QLik Sense database and Apps state are copied into a backup folder (snapshots) including latest date and time (2018-02-07_07-27_backup), this process is usually really quick (depending on app size), no services will be stopped during the backup process. There is also a logs created containing info and error.
  
-  - Copy the *Snapshots.cmd* file into an empty folder (snapshots will be generated in the Snaps subfolder). 
+  - Copy the *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
   - Right click on Snapshots Tool and Run as Administrator.
   - Add PostgreSQL password
   - Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
