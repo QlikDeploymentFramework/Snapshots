@@ -25,21 +25,21 @@ During recovery all Qlik Sense services except postgres need to be shutdown, in 
 - To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/4.png)
 - Recovery to the same system will work without any more questions asked.
-- If recovery to another system (copying the snap between environments) an aditional selection will pop-up (after the security backup). 
+- If recovering on another environment (copying the snap between environments) an aditional question will show. 
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
-- Here you can select to recover using the environmental settings (Y), this is the default and usually what you want to do. Meaning that the database will be updated with the settings from the current environment/server. Pressing (N) will use the settings stored within the snapshot, that have been identified as different to the current environment.
+- Here you can choice to recover using the environmental settings (Y), meaning that the backup settings is replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the snapshot settings.
 - If Snapshots cannot find target application folder the recovery will cancel. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything damaged.
 
 ## Switches
 ### Silent snapshots
-- You can also create snapshots silently (no command line interaction) by using the **silent** switch. Using this it's easy to schedule the snapshots using for example Windows scheduler.
+- You can also create snapshots silently without command-line interaction, using the **silent** switch. Using this to schedule the snapshots (example Windows scheduler).
 ```sh
 snapshots.cmd silent
 ```
-- This switch does not work together without a pre-set PostGreSQL password. Access will be validated, if denied Snapshots will exit. Please uncomment *set PGPASSWORD=<PassWord>* and add the pwd. You can also store pwd in *%APPDATA%\postgresql\pgpass.conf* file. Read more under settings section.
+- **Silent** does not work together without a pre-set PostGreSQL password. Access will be validated, if denied Snapshots will exit. Please uncomment *set PGPASSWORD=<PassWord>* and add the pwd. You can also store pwd in *%APPDATA%\postgresql\pgpass.conf* file. Read more under settings section.
 
 ### Silent snapshot with fixed name
-- The **silent** switch can also be extended with a fixed **backup_name** (instead of default date/time/server), in this way it becomes easier to create a recovery script (as the snapshot name is known).
+- **Silent** switch can also be extended with a fixed **backup_name** (instead of default date/time/server), in this way it becomes easier to create recovery scripts as the snapshot name is known.
 ```sh
 snapshots.cmd silent backup_name
 ```
