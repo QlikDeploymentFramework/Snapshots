@@ -22,21 +22,21 @@ PostGreSQL Name: localhost
 App folder: \\CentralNode\QlikShare
 RootCert Subject Name: CN=CN1-CA
 ```
-5.Press Enter to create a new snapshot.
+ 5.Press Enter to create a new snapshot.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
-6.After the tool has run once Snapshots will present earlier snapshots.
+ 6.After the tool has run once Snapshots will present earlier snapshots.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/3.png)
-7.Add/remove/change applications or QMC settings, take more snaps and so on... 
+ 7.Add/remove/change applications or QMC settings, take more snaps and so on... 
 ### Recover using snaps
 During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. 
 > In a multi node environment services on aditional nodes need to be shutdown manually
-1.To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
+ 1.To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/4.png)
-2.Recovery to the same system will work without any more questions asked.
-3.If recovering on another environment (copying the snap between environments) an aditional question will show. 
+ 2.Recovery to the same system will work without any more questions asked.
+ 3.If recovering on another environment (copying the snap between environments) an aditional question will show. 
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
-4.Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
-5.If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
+ 4.Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
+ 5.If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
 
 ## Switches
 ### Silent snapshots
