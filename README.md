@@ -109,7 +109,7 @@ set PostGreVersion=9.6
 ``` 
 ## Log
 Log files is created for every backup and recovery, stored under Log folder created by snapshots:
->  ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/8.png)
+>  ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/9.png)
 #### There are two kinds of log files:
 - **Error log** contains errors breaking backup or recovery, like a database lock that can't be removed or the database can't be accessed as seen below.
 ```sh
