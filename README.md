@@ -31,7 +31,6 @@ To create a Sense backup just hit enter
 _______________________________________
 |
  ```
-> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/2.png)
  6. As soon as Snapshots tool has run earlier snapshots are presented.
   ```sh
 -------  Available Snapshots:  --------
@@ -42,15 +41,26 @@ To create a Sense backup just hit enter
 ______________________________________
 |
  ```
-> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/3.png)
  7. You can now add/remove/change Qlik Sense applications settings, take more snaps and so on... 
 ### Recover using snaps
 During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. 
 > In a multi node environment services on aditional nodes need to be shutdown manually
- 1. To recover to a previous state tab to the snap (date and time) and press enter, afterwards accept selecting Y.
+ 1. To recover to a previous state tab to the snapshot and press enter, afterwards accept selecting Y.
+   ```sh
+Type name or tab snapshot to recover db
+To create a Sense backup just hit enter
+______________________________________
+2018-02-07_07-27_backup
+Do you want to recover snap 2018-02-07_07-27_backup, press Y to continue"
+ ```
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/4.png)
  2. Recovery to the same system will work without any more questions asked.
- 3. If recovering on another environment (copying the snap between environments) an aditional question will show. 
+ 3. If recovering on another environment (copying the snap between environments) an aditional question will show.
+```sh
+There is a diff between destination environment and the selected snapshot
+Snapshots will continue after 10 sec using destination settings
+Press N to use snapshots settings or Y for default environmental
+ ```
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
  4. Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
  5. If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
