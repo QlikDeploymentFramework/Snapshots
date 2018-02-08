@@ -27,8 +27,8 @@ During recovery all Qlik Sense services except postgres need to be shutdown, in 
 - Recovery to the same system will work without any more questions asked.
 - If recovering on another environment (copying the snap between environments) an aditional question will show. 
 > ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
-- Here you can choice to recover using the environmental settings (Y), meaning that the backup settings is replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the snapshot settings.
-- If Snapshots cannot find target application folder the recovery will cancel. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything damaged.
+- Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
+- If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
 
 ## Switches
 ### Silent snapshots
