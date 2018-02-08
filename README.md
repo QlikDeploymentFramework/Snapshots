@@ -36,7 +36,7 @@ During recovery all Qlik Sense services except postgres need to be shutdown, in 
 ```sh
 snapshots.cmd silent
 ```
-- This switch does not work together with password protection on the PostGreSQL database, please uncomment *set PGPASSWORD=<PassWord>* and add the pwd. You can also add a *%APPDATA%\postgresql\pgpass.conf* file storing pwd read more under settings section. Postgres access will be validated, if access is denied Snapshots will terminate, read more under settings section.
+- This switch does not work together without a pre-set PostGreSQL password. Access will be validated, if denied Snapshots will exit. Please uncomment *set PGPASSWORD=<PassWord>* and add the pwd. You can also store pwd in *%APPDATA%\postgresql\pgpass.conf* file. Read more under settings section.
 
 ### Silent snapshot with fixed name
 - The **silent** switch can also be extended with a fixed **backup_name** (instead of default date/time/server), in this way it becomes easier to create a recovery script (as the snapshot name is known).
