@@ -12,7 +12,7 @@ The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that ut
 ### Getting started
 Your current QLik Sense database and Apps state are copied into a backup folder (snapshots) including latest date and time (*2018-02-07_07-27_backup*), this process is usually really quick (depending on app size), no services will be stopped during the backup process. There is also a logs created containing info and error.
  
-  1. Copy the *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
+  1. Copy *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
   2. Right click on Snapshots Tool and Run as Administrator.
   3. Add PostgreSQL password, default account is postgres
   4. Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
