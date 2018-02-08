@@ -1,5 +1,5 @@
 # Snapshot Tool
-The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that utilizes PostGreSQL and file copy commands to store backups into a folder logic the snapshots and makes it possible to jump in time between multiple snapshots. Snapshots also incorporates a "safety net" so that reversion back to previous state is possible. The tool must run from the CentralNode and will automatically identify the environment and create snaps of the current Qlik Sense environment. Another nice function is that snapshots (in shared persistent mode) can moved between environments and crucial database settings will be changed to fit the new environment.
+The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that utilizes PostGreSQL and file copy commands to store backups into a folder logic the snapshots and makes it possible to jump in time between multiple snapshots. Snapshots also incorporates a "safety net" so that reversion back to previous state is possible. The tool must run from the CentralNode and will automatically identify the environment and create snaps of the current Qlik Sense environment.
 
 > Snapshots tool is open source and not supported by Qlik.
 
