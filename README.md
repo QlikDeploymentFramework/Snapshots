@@ -60,7 +60,7 @@ There is a diff between destination environment and the selected snapshot
 Snapshots will continue after 10 sec using destination settings
 Press N to use snapshots settings or Y for default environmental [Y/N]?
  ```
- 4. Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
+ 4. Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings. As Snapshots should execute silently there is a 10sec window to press (N) else (Y) is automaticaly set
  5. If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
 
 ## Switches
