@@ -51,17 +51,15 @@ Type name or tab snapshot to recover db
 To create a Sense backup just hit enter
 ______________________________________
 2018-02-07_07-27_backup
-Do you want to recover snap 2018-02-07_07-27_backup, press Y to continue"
+Do you want to recover snap 2018-02-07_07-27_backup, press Y to continue [Y/N]?
  ```
-> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/4.png)
  2. Recovery to the same system will work without any more questions asked.
  3. If recovering on another environment (copying the snap between environments) an aditional question will show.
 ```sh
 There is a diff between destination environment and the selected snapshot
 Snapshots will continue after 10 sec using destination settings
-Press N to use snapshots settings or Y for default environmental
+Press N to use snapshots settings or Y for default environmental [Y/N]?
  ```
-> ![N|Solid](https://raw.githubusercontent.com/QlikDeploymentFramework/Snapshots/master/Images/5.png)
  4. Here you have the choice of recovering using the current server settings (Y), meaning that the backup settings are replaced with the current environment/server setting. This is the default and usually what you want to do. Pressing (N) will keep the original snapshot settings.
  5. If Snapshots cannot find target application folder the recovery will exit. Example, if selecting snapshot settings (N) and the apps folder is wrong the backup will stop before anything is damaged.
 
