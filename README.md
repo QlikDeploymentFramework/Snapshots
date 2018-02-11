@@ -14,7 +14,7 @@ Your current Qlik Sense database and App state (among others) are copied into a 
  
   1. Copy *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
   2. Right click on Snapshots Tool and Run as Administrator.
-  3. Add PostgreSQL password, default account is postgres
+  3. Add PostgreSQL password, default account name is *postgres*
   4. Validate settings identified by Snapshots (seen below). If running Shared Persistence the App folder should be the same as application share. Root certificate is identified and presented (in this example CN=CN1-CA). First time start there are no available snapshots (as you have not created any yet).
 ```sh  
 ----- Snapshots 2.2 identified config:  ------
