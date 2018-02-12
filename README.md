@@ -10,7 +10,7 @@ The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that ut
 - In an active/passive configuration, moving snapshots between the environments. Both environments must to use the same certificates.
 
 ### Getting started
-Your current Qlik Sense database and App state (among others) are copied into a backup folder (snapshot) named with date and time (*2018-02-07_07-27_backup*). Taking a snapshot is usually quite fast (depending on app size), and no services need to stop during the backup process. Info and error logs are created during both backup and recovery.
+Your current Qlik Sense database and App state (among others) are copied into a backup folder (snapshot) named with date and time (*2018-02-07_07-27_backup*). Taking a snapshot goes usually quite swift (depending apps and size), and no services need to stop during the backup process. Info and error logs are created during both backup and recovery.
  
   1. Copy *Snapshots.cmd* into an empty folder (snapshots and logs are generated in subfolder) 
   2. Right click on Snapshots Tool and Run as Administrator.
