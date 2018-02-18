@@ -44,7 +44,7 @@ ______________________________________
  7. You can now add/remove/change Qlik Sense applications settings, take more snaps and so on... 
 ### Recover using snaps
 During recovery all Qlik Sense services except postgres need to be shutdown, in a single server setup the snapshots tool will do this automatically. 
-> In a multi node environment services on aditional nodes need to be shutdown manually
+> In a multi node recovery Qlik services on additional nodes need to be restarted manually
  1. To recover to a previous state tab to the snapshot and press enter, afterwards accept selecting Y.
    ```sh
 Type name or tab snapshot to recover db
