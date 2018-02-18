@@ -7,7 +7,7 @@ The Snapshots Tool is a Qlik Sense Enterprise command line tool (script) that ut
 - Snapshots need Powershell 4.0 or later to be installed on the server.
 - Snapshots need to run on the CentralNode to backup certificates from *Windows certificate store*
 - Snapshots should run under the same service account as Qlik Repository Service to backup client certificates (not critical, there are other certificate backups that can be used instead)
-- In an active/passive configuration, moving snapshots between the environments. Both environments must to use the same certificates.
+- In an active/passive configuration, moving snapshots between the environments. Both environments must to use the same certificates read more here https://github.com/QlikDeploymentFramework/Snapshots/blob/master/Active_Passive_Replication.md.
 
 ### Getting started
 Your current Qlik Sense database and App state (among others) are copied into a backup folder (snapshot) named with date and time (*2018-02-07_07-27_backup*). Taking a snapshot goes usually quite swift (depending apps and size), and no services need to stop during the backup process. Info and error logs are created during both backup and recovery.
