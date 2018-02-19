@@ -47,16 +47,16 @@ These instructions are for a setup using a file share and QSR database stored lo
 14. Stop all Qlik Services on the passive central node
 15. On the passive central node (as the service account) open mmc and add the certificates snap-in twice, as My user account and Computer account (local computer)
 
-16. First open certificates `Local Computer/Trusted Root Certification Authorities/Certificates` and find the Qlik Sense local cert in our case `CN-CA` (the same name as copied) delete this cert. After import the `root.pfx` cert file we copied from active central node. The default import password is `QlikSense`.
-17. Now go into `Local Computer/Personal/Certificates` and replace the `personal certificate`, in our case CN is deleted and replaced (import) by the `server.pfx`, default import password is QlikSense.
-18. Last go into `Current User/Personal/Certificates` and replace `QlikClient` with `client.pem` located under `Exported Certificates\.Local Certificates`
-19. Start Qlik services on passive central node. Repeat steps 5-10 replacing data center A with B
-20. Now when you have both sites running you should be able to replicate snaps between A and B, lets try it
-21 Create a snapshot on active central node (A), copy the snap to passive central node (B) under the `snapshots.cmd` snaps folder
-22. On passive central node (B) run snapshots.cmd (as Administrator) and select the snap from A, the snap name should be date + computername from A. Security backup from B will be created first and second the recovery from A will run, last settings (like file share url) will be applied on the database.
-23. Validate that the Qlik Sense environment (central + rim nodes) is working on data center B
-if everything works correct in data center B automation can be applied to automatically create and move snaps from A to B. There are some switches to apply to `Snapshots.cmd`` that helps during automation.
-24. Create a fixed Central Node snapshot on site A applying switch `snapshots.cmd silent snapshot_name`
-25. Copy `snapshot_name` to Central Node on site B
-26. Recover Central Node on site B using the switch snapshots.cmd restore snapshot_name
-It's important to stop all Qlik Sense services on all passive nodes (except repository database on central node) before the recovery. An option is to in the `snapshots.cmd` command line script add the SC command that have support for remote stop and start of services.
+15.1 First open certificates `Local Computer/Trusted Root Certification Authorities/Certificates` and find the Qlik Sense local cert in our case `CN-CA` (the same name as copied) delete this cert. After import the `root.pfx` cert file we copied from active central node. The default import password is `QlikSense`.
+15.2 Now go into `Local Computer/Personal/Certificates` and replace the `personal certificate`, in our case CN is deleted and replaced (import) by the `server.pfx`, default import password is QlikSense.
+15.3 Last go into `Current User/Personal/Certificates` and replace `QlikClient` with `client.pem` located under `Exported Certificates\.Local Certificates`
+16. Start Qlik services on passive central node. Repeat steps 5-10 replacing data center A with B
+17. Now when you have both sites running you should be able to replicate snaps between A and B, lets try it
+17.1 Create a snapshot on active central node (A), copy the snap to passive central node (B) under the `snapshots.cmd` snaps folder
+17.2 On passive central node (B) run snapshots.cmd (as Administrator) and select the snap from A, the snap name should be date + computername from A. Security backup from B will be created first and second the recovery from A will run, last settings (like file share url) will be applied on the database.
+17.3 Validate that the Qlik Sense environment (central + rim nodes) is working on data center B
+18. if everything works correct in data center B automation can be applied to automatically create and move snaps from A to B. There are some switches to apply to `Snapshots.cmd` that helps during automation.
+18.1 Create a fixed Central Node snapshot on site A applying switch `snapshots.cmd silent snapshot_name`
+18.2 Copy `snapshot_name` to Central Node on site B
+18.3 Recover Central Node on site B using the switch snapshots.cmd restore snapshot_name
+19. It's important to stop all Qlik Sense services on all passive nodes (except repository database on central node) before the recovery. An option is to in the `snapshots.cmd` command line script add the SC command that have support for remote stop and start of services.
