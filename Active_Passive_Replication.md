@@ -52,7 +52,7 @@ These instructions are for a setup using a file share and QSR database stored lo
   3. Last go into `Current User/Personal/Certificates` and replace `QlikClient` with `client.pem` located under `Exported Certificates\.Local Certificates`
 16. Start Qlik services on passive central node. Repeat steps 5-10 replacing data center A with B
 17. Now when you have both sites running you should be able to replicate snaps between A and B, lets try it
-  1. Create a snapshot on active central node (A), copy the snap to passive central node (B) under the `snapshots.cmd` snaps folder
+  _17.1. Create a snapshot on active central node (A), copy the snap to passive central node (B) under the `snapshots.cmd` snaps folder
   2. On passive central node (B) run snapshots.cmd (as Administrator) and select the snap from A, the snap name should be date + computername from A. Security backup from B will be created first and second the recovery from A will run, last settings (like file share url) will be applied on the database.
   3. Validate that the Qlik Sense environment (central + rim nodes) is working on data center B
 18. if everything works correct in data center B automation can be applied to automatically create and move snaps from A to B. There are some switches to apply to `Snapshots.cmd` that helps during automation.
