@@ -5,7 +5,7 @@ In this article we will describe how to setup a constant replication between pri
 ## Snapshots Tool
 The Snapshots Tool is a command line script that running on the central node creates backup snapshots of the current environment. The snapshots can then be copied to another site's central node and revert the snapshot. If identified the snapshots tool will change important settings to the once identified on the new site. Last as it's a command line script it's easy to modify to fit the current system needs. Making it easy to adapt, dependent on the use case and the environment at hand. 
 
-> Snapshots Tool is not supported by QLik
+> Snapshots Tool is not supported by Qlik
 
 ## Local server alias names
 To create a workable replication the servers in each site need to have the same local alias names, so that the replicated database could find the rim nodes "on the other side". Local names are not the same as computer names that must be unique, local names are created by mapping IP in the hosts file of each server.Site A hosts file maps to his local names and correlating IP numbers while B have the exact set of names but mapping to site B's IP numbers. If a new node is added the hosts file need to be updated on all servers in A and B. 
