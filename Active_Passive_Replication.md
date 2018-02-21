@@ -59,6 +59,6 @@ These instructions are for a setup using a file share and QSR database stored lo
   * Validate that the Qlik Sense environment (central + rim nodes) is working on data center B
 18. if everything works correct in data center B automation can be applied to automatically create and move snaps from A to B. There are some switches to apply to `Snapshots.cmd` that helps during automation.
   * Create a fixed Central Node snapshot on site A applying switch `snapshots.cmd silent snapshot_name`
-  * Copy `snapshot_name` to Central Node on site B
-  * Recover Central Node on site B using the switch snapshots.cmd restore snapshot_name
+  * Copy snapshot with name `snapshot_name` to Central Node on site B
+  * Recover Central Node on site B using the switch `snapshots.cmd restore snapshot_name`
 19. It's important to stop all Qlik Sense services on all passive nodes (except repository database on central node) before the recovery. An option is to in the `snapshots.cmd` command line script add the SC command that have support for remote stop and start of services.
