@@ -344,9 +344,9 @@ exit
 echo #### Creating recovery settings file
 echo SET Apps=%Apps%>"Settings.cmd"
 echo SET StaticContent=%StaticContent%>> "Settings.cmd"
-echo SET CustomData=%CustomData%>> "Settings.cmd"
 echo SET ArchivedLogs=%ArchivedLogs%>> "Settings.cmd"
 echo SET RootFolder=%RootFolder%>> "Settings.cmd"
+::echo SET CustomData=%CustomData%>> "Settings.cmd"
 ::echo SET HostName=%HostName%>> "Settings.cmd"
 ::echo SET DatabaseHost=%DatabaseHost%>> "Settings.cmd"
 
