@@ -33,7 +33,8 @@ SET CertExportPWD=QlikSense
 ::--- Warning! Modify only if using Multi Sync, else folders are identified automatically
 SET Apps=%SenseDataFolder%\Sense\Apps
 SET StaticContent=%SenseDataFolder%\Sense\Repository
-SET CustomData=%SenseDataFolder%\Custom Data
+SET CustomData=%CommonProgramFiles%\Qlik\Custom Data
+::SET CustomData=%SenseDataFolder%\Custom Data 
 SET ArchivedLogs=%SenseDataFolder%\Archived Logs 
 
 ::-------- Settings section end ------------------------------------------
