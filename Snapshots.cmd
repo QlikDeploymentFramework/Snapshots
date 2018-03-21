@@ -78,7 +78,7 @@ for /f "delims="  %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %P
 if "%SP_Active%"==""  goto Skip_SP
 SET Apps=%SP_Active%
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"StaticContentRootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set StaticContent=%%i
-for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"Connector64RootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set CustomData=%%i
+::for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"Connector64RootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set CustomData=%%i
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"RootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set RootFolder=%%i
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"DatabaseHost\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set DatabaseHost=%%i
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"ArchivedLogsRootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set ArchivedLogs=%%i
@@ -312,11 +312,10 @@ echo #### Call settings and adjusting database values
 
 psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"AppFolder\" ='%Apps%'; commit;"
 psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"StaticContentRootFolder\" ='%StaticContent%'; commit;"
-psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"Connector64RootFolder\" ='%CustomData%'; commit;"
-psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"Connector32RootFolder\" ='%CustomData%'; commit;"
+::psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"Connector64RootFolder\" ='%CustomData%'; commit;"
+::psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"Connector32RootFolder\" ='%CustomData%'; commit;"
 psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"RootFolder\" ='%RootFolder%'; commit;"
 psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"ServiceClusterSettingsSharedPersistenceProperties\" SET \"ArchivedLogsRootFolder\" ='%ArchivedLogs%'; commit;"
-::psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "begin;Update \"LocalConfigs\" SET \"HostName\" ='%HostName%'; commit;"
 
 SET Section=Start_Services &goto isodate
 :Start_Services 
