@@ -1,6 +1,6 @@
 @echo off
 ::-------- Settings section starts ---------------------------------
-SET Version=2.2
+SET Version=2.3
 ::--- Local Sense Data folder, usually %ProgramData%\Qlik
 SET SenseDataFolder=%ProgramData%\Qlik
 
@@ -38,7 +38,6 @@ SET CustomData=%CommonProgramFiles%\Qlik\Custom Data
 SET ArchivedLogs=%SenseDataFolder%\Archived Logs 
 
 ::-------- Settings section end ------------------------------------------
-::------------------------------------------------------------------------
 
 :: Sub to set date and time
 SET Section=createfolders &goto isodate
@@ -109,7 +108,7 @@ SET Section=DIR &goto SettingsFile
 popd
 
 cls
-echo ---- Snapshots v%Version% identified config:  -------
+echo --- Snapshots v%Version% identified config: ---
 echo PostGreSQL Name: %PostgreLocation%
 echo App folder: %Apps%
 echo RootCert Subject Name: %RootSubjectName%
