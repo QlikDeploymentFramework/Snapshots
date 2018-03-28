@@ -222,6 +222,9 @@ echo #### Starting recovery of snapshot %DBFolder%, MD5 hash created &echo %_iso
 for /f %%i in ('powershell.exe -nologo -noprofile -command "Get-FileHash -Path Settings.cmd -Algorithm MD5| Select-Object -ExpandProperty Hash"') do set BackupHash=%%i
 ::echo #### BackupHash= %BackupHash%
 ::echo #### HashBaseline= %HashBaseline%
+::if restore switsh is added use default environmental settings
+if "%1"=="restore" goto Stop_Services
+::if running recovery on same server as the snap was freated from use default environmental settings
 if %BackupHash% == %HashBaseline% goto Stop_Services
 cls
 echo ---------------------------------------------------------------
@@ -346,8 +349,6 @@ echo SET StaticContent=%StaticContent%>> "Settings.cmd"
 echo SET ArchivedLogs=%ArchivedLogs%>> "Settings.cmd"
 echo SET RootFolder=%RootFolder%>> "Settings.cmd"
 ::echo SET CustomData=%CustomData%>> "Settings.cmd"
-::echo SET HostName=%HostName%>> "Settings.cmd"
-::echo SET DatabaseHost=%DatabaseHost%>> "Settings.cmd"
 
 popd
 goto %Section%
