@@ -100,7 +100,7 @@ for /f %%i in ('powershell.exe -nologo -noprofile -command "Get-FileHash -Path S
 ::echo #### HashBaseline= %HashBaseline%
 
 if "%1"=="restore" goto Backup_end
-if NOT "%1"=="" exit
+if NOT "%1"==""  echo ### Unknown switches identified & echo %_isodate% Unknown switches identified, exit Snapshots Tool>>"%LogFile%_Error.log"  &goto end
 :: Go to Common settings file sub
 SET Section=DIR &goto SettingsFile
 
