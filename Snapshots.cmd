@@ -332,14 +332,11 @@ net start "QlikSensePrintingService"
 NET start "QlikSenseServiceDispatcher"
 
 echo #### Recovery complete &echo %_isodate% Recovery complete >>"%LogFile%_Info.log"
-:end
 
 ::echo #### Terminate all connections from %PostGreDB%
 ::psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '%PostGreDB%' AND pid <> pg_backend_pid();"
+goto end
 
-popd
-echo #### Snapshots done
-exit
 
 :: Sub for creating settins file
 :SettingsFile
@@ -384,3 +381,7 @@ if "%PGPASSWORD%"=="" set "psCommand=powershell -Command "$pword = read-host 'En
 if "%PGPASSWORD%"=="" for /f "usebackq delims=" %%p in (`%psCommand%`) do set PGPASSWORD=%%p
 
 goto %Section%
+
+:end
+popd
+echo #### Snapshots done
