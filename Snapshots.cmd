@@ -69,9 +69,6 @@ for /f %%i in ('powershell.exe -nologo -noprofile -command "$store = Get-Item \"
 ::--- Auto identify Shared Persistance folder settings by quering PostGreSQL
 pushd "%PostgreBin%"
 
-for /f %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"HostName\" FROM \"LocalConfigs\" ; "') do set HostName=%%i
-IF "%HostName%"=="" echo Could not access PostgreSQL DB:%PostGreDB% Server:%PostgreLocation% Port:%PostGrePort% Account:%PostgreAccount%  &echo %_isodate% Could not access PostgreSQL DB:%PostGreDB% Server:%PostgreLocation% Port:%PostGrePort% Account:%PostgreAccount% , exit Snapshots>>"%LogFile%_Error.log" & exit
-
 for /f "delims="  %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"AppFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set SP_Active=%%i
 
 if "%SP_Active%"==""  goto Skip_SP
@@ -112,7 +109,6 @@ echo --- Snapshots v%Version% identified config: ---
 echo PostGreSQL Name: %PostgreLocation%
 echo App folder: %Apps%
 echo RootCert Subject Name: %RootSubjectName%
-::echo Server Hostname found in DB: %HostName%
 
 echo.
 echo -------  Available Snapshots:  --------
