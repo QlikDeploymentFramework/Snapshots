@@ -5,8 +5,9 @@ SET Version=2.4
 SET SenseDataFolder=%ProgramData%\Qlik
 
 ::--- PostgreSQL settings
+SET QlikSenseHome=%ProgramFiles%\Qlik\Sense\Repository
 
-SET PostgreHome=%ProgramFiles%\Qlik\Sense\Repository\PostgreSQL
+SET PostgreHome=%QlikSenseHome%\PostgreSQL
 
 ::--- Auto identify postgres version
 for /f %%i in ('dir "%PostgreHome%\9.*" /B') do set PostGreVersion=%%i
@@ -318,6 +319,12 @@ psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreD
 SET Section=Start_Services &goto isodate
 :Start_Services 
 echo.
+echo #### Resore certificates on %computername% &echo %_isodate% Start  Resore certificates on %computername% >>"%LogFile%_Info.log"
+NET start "QlikSenseServiceDispatcher"
+pushd "%QlikSenseHome%"
+Repository.exe -bootstrap -standalone -restorehostname
+popd
+
 echo #### Start services on %computername% &echo %_isodate% Start services on %computername% >>"%LogFile%_Info.log"
 
 NET start "QlikSenseRepositoryService"
@@ -325,7 +332,7 @@ NET start "QlikSenseEngineService"
 NET start "QlikSenseProxyService"
 NET start "QlikSenseSchedulerService"
 net start "QlikSensePrintingService"
-NET start "QlikSenseServiceDispatcher"
+
 
 echo #### Recovery complete &echo %_isodate% Recovery complete >>"%LogFile%_Info.log"
 
