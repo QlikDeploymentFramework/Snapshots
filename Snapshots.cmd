@@ -1,6 +1,6 @@
 @echo off
 ::-------- Settings section starts ---------------------------------
-SET Version=2.4
+SET Version=2.5
 ::--- Local Sense Data folder, usually %ProgramData%\Qlik
 SET SenseDataFolder=%ProgramData%\Qlik
 
