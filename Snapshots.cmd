@@ -72,7 +72,7 @@ pushd "%PostgreBin%"
 
 ::--- Auto identify app folder, if snap can not access db then exit
 for /f "delims="  %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"AppFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set Apps=%%i
-if "%Apps%"=="" goto end
+if "%Apps%"=="" echo ### Could not read app folder from db, wrong password? & echo Could not read app folder from db, wrong password? >>"%LogFile%_Error.log"  &goto end
 
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"StaticContentRootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set StaticContent=%%i
 ::for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"Connector64RootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set CustomData=%%i
@@ -156,7 +156,7 @@ If "%DBFolder%"=="" goto Backup_all
 IF "%DBFolder%"=="%backupdir%" goto dropdb
 
 :Backup_all
-IF NOT EXIST "%Apps%"* echo #### Could not find any apps under %Apps%  &echo %_isodate% Could not find any apps under %Apps%, exit backup >>"%LogFile%_Error.log" & goto Backup_end
+IF NOT EXIST "%Apps%"* echo #### Could not find any apps under %Apps%  &echo %_isodate% Could not find any apps under %Apps%, exit backup >>"%LogFile%_Error.log" & goto end
 SET Section=Backup_all
 
 echo #### Backup content &echo %_isodate% Backup content from: "%Apps%" "%StaticContent%" "%CustomData%">>"%LogFile%_Info.log" 
