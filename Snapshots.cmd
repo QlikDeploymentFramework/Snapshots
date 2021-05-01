@@ -10,7 +10,7 @@ SET QlikSenseHome=%ProgramFiles%\Qlik\Sense\Repository
 SET PostgreHome=%QlikSenseHome%\PostgreSQL
 
 ::--- Auto identify postgres version
-for /f %%i in ('dir "%PostgreHome%\9.*" /B') do set PostGreVersion=%%i
+for /f %%i in ('dir "%PostgreHome%\*.*" /B') do set PostGreVersion=%%i
 ::--- Manual set postgres version
 :: SET PostGreVersion=9.6
 
@@ -108,6 +108,7 @@ popd
 cls
 echo --- Snapshots v%Version% identified config: ---
 echo PostGreSQL Name: %PostgreLocation%
+echo PostGreSQL Version: %PostGreVersion%
 echo App folder: %Apps%
 echo RootCert Subject Name: %RootSubjectName%
 
