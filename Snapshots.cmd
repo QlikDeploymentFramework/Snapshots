@@ -32,7 +32,7 @@ SET CertExportPWD=QlikSense
 
 ::--- Default folder settings, settings below are identifyed automatically when running Shared Persistence
 ::--- Warning! Modify only if using Multi Sync, else folders are identified automatically
-SET Apps=%SenseDataFolder%\Sense\Apps
+::SET Apps=%SenseDataFolder%\Sense\Apps
 SET StaticContent=%SenseDataFolder%\Sense\Repository
 SET CustomData=%CommonProgramFiles%\Qlik\Custom Data
 ::SET CustomData=%SenseDataFolder%\Custom Data 
@@ -70,10 +70,10 @@ for /f %%i in ('powershell.exe -nologo -noprofile -command "$store = Get-Item \"
 ::--- Auto identify Shared Persistance folder settings by quering PostGreSQL
 pushd "%PostgreBin%"
 
-for /f "delims="  %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"AppFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set SP_Active=%%i
+::--- Auto identify app folder, if snap can not access db then exit
+for /f "delims="  %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"AppFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set Apps=%%i
+if "%Apps%"=="" goto end
 
-if "%SP_Active%"==""  goto Skip_SP
-SET Apps=%SP_Active%
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"StaticContentRootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set StaticContent=%%i
 ::for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"Connector64RootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set CustomData=%%i
 for /f "delims=" %%i in ('psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% -c "SELECT \"RootFolder\" FROM \"ServiceClusterSettingsSharedPersistenceProperties\" ; "') do set RootFolder=%%i
