@@ -1,6 +1,6 @@
 @echo off
 ::-------- Settings section starts ---------------------------------
-SET Version=2.5
+SET Version=2.6
 ::--- Local Sense Data folder, usually %ProgramData%\Qlik
 SET SenseDataFolder=%ProgramData%\Qlik
 
@@ -20,6 +20,10 @@ SET PostgreLocation=localhost
 SET PostgreAccount=postgres
 SET PostGrePort=4432
 SET PostGreDB=QSR
+:: Sense Services db
+SET SenseServices=SenseServices
+:: License db 
+SET Licenses=Licenses
 
 ::--- PGPASSWORD add password, also consider creating a %APPDATA%\postgresql\pgpass.conf file
 ::SET PGPASSWORD=<password>
@@ -172,7 +176,9 @@ SET Section=BackupDB &goto isodate
 echo #### Backing up %PostGreDB% database
 echo #### Copy database to "%Home%\%backupdir%\%PostGreDB%_backup.tar" &echo %_isodate% Copy database to "%Home%\%backupdir%\%PostGreDB%_backup.tar">>"%LogFile%_Info.log"
 pushd "%PostgreBin%"
-pg_dump.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount%  -o -b -F t -f "%Home%\%backupdir%\%PostGreDB%_backup.tar" %PostGreDB%
+pg_dump.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount%  -b -F t -f "%Home%\%backupdir%\%PostGreDB%_backup.tar" %PostGreDB%
+pg_dump.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount%  -b -F t -f "%Home%\%backupdir%\%SenseServices%_backup.tar" %SenseServices%
+pg_dump.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount%  -b -F t -f "%Home%\%backupdir%\%Licenses%_backup.tar" %Licenses%
 
 echo #### Copy PostGre configuration files
 robocopy "%PostgreConf%" "%Home%\%backupdir%\PostGreConf" *.conf /NP /NJH /NJS /R:10 /w:3
@@ -272,6 +278,14 @@ psql -qtA -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreD
 dropdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% %PostGreDB%
 IF NOT %ERRORLEVEL%==0 echo ### Could not drop database will exit & echo %_isodate% Could not drop database, exit recovery>>"%LogFile%_Error.log"  &goto end
 
+::drop SenseServices uncomment to use. Not default due to older snaps does not support this
+::dropdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% %SenseServices%
+::IF NOT %ERRORLEVEL%==0 echo ### Could not drop %SenseServices% will exit & echo %_isodate% Could not drop database, exit recovery>>"%LogFile%_Error.log"  &goto end
+
+::drop Licenses uncomment to use. Not default due to older snaps does not support this
+::dropdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% %Licenses%
+::IF NOT %ERRORLEVEL%==0 echo ### Could not drop %Licenses% will exit & echo %_isodate% Could not drop database, exit recovery>>"%LogFile%_Error.log"  &goto end
+
 
 echo #### Create %PostGreDB% &echo %_isodate% createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %PostGreDB% >>"%LogFile%_Info.log"
 
@@ -287,6 +301,11 @@ echo #### Restore %PostGreDB% &echo %_isodate% pg_restore.exe -h %PostgreLocatio
 
 
 pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% "%Home%\%DBFolder%\%PostGreDB%_backup.tar"
+
+:: Only works if SenseServices db is droped (above) or on clean environments
+pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %SenseServices% "%Home%\%DBFolder%\%SenseServices%_backup.tar"
+:: Only works if Licenses db is droped (above) or on clean environments
+pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %Licenses% "%Home%\%DBFolder%\%Licenses%_backup.tar"
 
 
 ::echo #### %PostGreDB% read only during recovery
