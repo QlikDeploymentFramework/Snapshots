@@ -285,12 +285,21 @@ IF NOT %ERRORLEVEL%==0 echo ### Could not drop database will exit & echo %_isoda
 ::drop Licenses uncomment to use. Not default due to older snaps does not support this
 ::dropdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% %Licenses%
 ::IF NOT %ERRORLEVEL%==0 echo ### Could not drop %Licenses% will exit & echo %_isodate% Could not drop database, exit recovery>>"%LogFile%_Error.log"  &goto end
+:: Executed only if SenseServices db backup exists
+IF EXIST "%Home%\%DBFolder%\%SenseServices%_backup.tar" dropdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% %SenseServices%
+IF NOT %ERRORLEVEL%==0 echo ### Could not drop %SenseServices%  & echo %_isodate% Could not drop %SenseServices%>>"%LogFile%_Error.log"
 
+:: Executed only if Licenses db db backup exists
+IF EXIST "%Home%\%DBFolder%\%Licenses%_backup.tar" dropdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% %Licenses%
+IF NOT %ERRORLEVEL%==0 echo ### Could not drop %Licenses% & echo %_isodate% Could not drop %Licenses%>>"%LogFile%_Error.log"
+
+IF EXIST "%Home%\%DBFolder%\%SenseServices%_backup.tar" createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %SenseServices% & echo Create db %SenseServices%
+IF EXIST "%Home%\%DBFolder%\%Licenses%_backup.tar" createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %Licenses% & echo  Create db %Licenses%
 
 echo #### Create %PostGreDB% &echo %_isodate% createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %PostGreDB% >>"%LogFile%_Info.log"
-
 createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %PostGreDB%
 IF NOT %ERRORLEVEL%==0 goto %Section%
+
 
 :: Sub to set date and time
 SET Section=pg_restore &goto isodate
@@ -302,10 +311,12 @@ echo #### Restore %PostGreDB% &echo %_isodate% pg_restore.exe -h %PostgreLocatio
 
 pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %PostGreDB% "%Home%\%DBFolder%\%PostGreDB%_backup.tar"
 
-:: Only works if SenseServices db is droped (above) or on clean environments
-pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %SenseServices% "%Home%\%DBFolder%\%SenseServices%_backup.tar"
-:: Only works if Licenses db is droped (above) or on clean environments
-pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %Licenses% "%Home%\%DBFolder%\%Licenses%_backup.tar"
+:: Executed only if SenseServices db backup exists
+IF EXIST "%Home%\%DBFolder%\%SenseServices%_backup.tar" pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %SenseServices% "%Home%\%DBFolder%\%SenseServices%_backup.tar"
+
+
+:: Executed only if Licenses db db backup exists
+IF EXIST "%Home%\%DBFolder%\%Licenses%_backup.tar" pg_restore.exe -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -d %Licenses% "%Home%\%DBFolder%\%Licenses%_backup.tar"
 
 
 ::echo #### %PostGreDB% read only during recovery
@@ -342,6 +353,7 @@ echo.
 echo #### Resore certificates on %computername% &echo %_isodate% Start  Resore certificates on %computername% >>"%LogFile%_Info.log"
 NET start "QlikSenseServiceDispatcher"
 pushd "%QlikSenseHome%"
+echo #### Executing repository bootstrap &echo %_isodate% Running repository bootstrap  >>"%LogFile%_Info.log"
 Repository.exe -bootstrap -standalone -restorehostname
 popd
 
