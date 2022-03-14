@@ -294,7 +294,7 @@ IF EXIST "%Home%\%DBFolder%\%Licenses%_backup.tar" dropdb -h %PostgreLocation% -
 IF NOT %ERRORLEVEL%==0 echo ### Could not drop %Licenses% & echo %_isodate% Could not drop %Licenses%>>"%LogFile%_Error.log"
 
 IF EXIST "%Home%\%DBFolder%\%SenseServices%_backup.tar" createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %SenseServices% & echo Create db %SenseServices%
-IF EXIST "%Home%\%DBFolder%\%Licenses%_backup.tar" createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %Licenses% & echo  Create db %Licenses%
+IF EXIST "%Home%\%DBFolder%\%Licenses%_backup.tar" createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %Licenses% & echo Create db %Licenses%
 
 echo #### Create %PostGreDB% &echo %_isodate% createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %PostGreDB% >>"%LogFile%_Info.log"
 createdb -h %PostgreLocation% -p %PostGrePort% -U %PostgreAccount% -T template0 %PostGreDB%
