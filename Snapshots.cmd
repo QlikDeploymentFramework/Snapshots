@@ -234,8 +234,8 @@ cls
 echo ---------------------------------------------------------------
 echo .
 echo #### There is a diff between destination environment and the selected snapshot &echo %_isodate% There is a diff between destination environment and the selected snapshot %DBFolder%>>"%LogFile%_Info.log"
-echo #### Snapshots will continue after 10 sec using destination settings &echo %_isodate% Snapshots will continue after 10 sec using destination settings>>"%LogFile%_Info.log"
-Choice /T 10 /D Y /M "Press N to use snaps settings and Y for default environmental"
+echo #### Snapshots will continue after 30 sec using destination settings &echo %_isodate% Snapshots will continue after 10 sec using destination settings>>"%LogFile%_Info.log"
+Choice /T 30 /D Y /M "Press N to use snaps settings and Y for default environmental"
 IF NOT ERRORLEVEL 2 goto Stop_Services
 echo #### changing snapshot settings
 SET SettingsFolder=%Home%\%DBFolder%
